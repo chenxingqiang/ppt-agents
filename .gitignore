@@ -41,8 +41,6 @@ ENV/
 .DS_Store
 
 # Output directories
-iechor-bp-ppt/
-templates/
 
 # Logs
 *.log 

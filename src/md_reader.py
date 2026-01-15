@@ -1,6 +1,15 @@
+"""
+Markdown Reader module for parsing markdown files into structured content.
+
+This module provides the MarkdownReader class which handles:
+- Parsing markdown files with tables, footnotes, and code blocks
+- Extracting sections, titles, and references
+- Processing links and formatting
+"""
+
 import markdown
 from bs4 import BeautifulSoup
-from markdown.extensions.tables import TableExtension
+from typing import List, Dict, Optional, Any
 
 
 class MarkdownReader:

@@ -1,16 +1,39 @@
+"""
+Core PPT generation module providing DetailedPPTGenerator for creating PowerPoint presentations.
+
+This module exports:
+- DetailedPPTGenerator: Main class for generating detailed PPT from markdown
+- MarkdownReader: Re-exported from md_reader for convenience
+- PPTTemplateReader: Re-exported from ppt_template_reader for convenience
+"""
+
 from pptx.enum.text import PP_ALIGN
 from pptx.util import Pt, Inches
 from pptx.dml.color import RGBColor
 import re
 import os
+from datetime import datetime
+
+# Re-export commonly used classes for convenience
+from src.md_reader import MarkdownReader
+from src.ppt_template_reader import PPTTemplateReader
+
+__all__ = ['DetailedPPTGenerator', 'MarkdownReader', 'PPTTemplateReader', 'remove_non_alphanumeric']
 
 
-def remove_non_alphanumeric(s):
-    # 只保留中文、英文和数字字符
+def remove_non_alphanumeric(s: str) -> str:
+    """
+    Remove non-alphanumeric characters from a string.
+    Preserves Chinese characters, English letters, and digits.
+    
+    Args:
+        s: Input string to filter
+        
+    Returns:
+        Filtered string containing only Chinese, English, and numeric characters
+    """
     filtered_string = re.sub(r"[^\u4e00-\u9fa5a-zA-Z0-9]", "", s)
     return filtered_string
-
-from datetime import datetime
 
 class DetailedPPTGenerator:
     def __init__(self, template_reader, markdown_reader, output_dir):
